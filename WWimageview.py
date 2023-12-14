@@ -4,7 +4,7 @@ import os
 from PIL import Image
 
 # Initialize Streamlit app
-st.title('Image and Video Display App')
+st.title('WW Quest 1- Submissions')
 
 # Step 1: Update dropdown options
 option = st.sidebar.selectbox('Select Option', ('Community', 'Team'))

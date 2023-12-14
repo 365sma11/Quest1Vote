@@ -9,7 +9,7 @@ st.title('WW Quest 1- Submissions Viewer')
 
 # Step 1: Update dropdown options
 option = st.sidebar.selectbox('Select Option', ('Community', 'Team'))
-vote="https://pn2nq2l5rqu.typeform.com/to/yYL4jCdC"
+vote = "https://pn2nq2l5rqu.typeform.com/to/yYL4jCdC"
 st.sidebar.markdown(f"<center><a href='{vote}'>Go Vote</a></center>", unsafe_allow_html=True)
 
 # Step 2: Conditional CSV file loading
@@ -35,29 +35,19 @@ if option:
             if os.path.exists(file_path):
                 current_col = cols[col_index % num_columns]
                 
+                # Display image or video
                 if file_path.endswith('.jpeg') or file_path.endswith('.jpg'):
                     image = Image.open(file_path)
-                    current_col.image(image, caption=f"{row['Team']} - Entry: {row['Entry']}", use_column_width=True)
+                    current_col.image(image, use_column_width=True)
                 elif file_path.endswith('.mp4'):
                     current_col.video(file_path)
-                    # video_file = open(file_path, 'rb')
-                    # video_bytes = video_file.read()
-                    # b64_video = base64.b64encode(video_bytes).decode()
 
-                    # # Embed the video using HTML with appropriate CSS
-                    # current_col.markdown(f"""
-                    #     <div style="padding: 10px; text-align: center;">
-                    #         <video style="max-width: 100%; height: auto;" controls>
-                    #             <source src="data:video/mp4;base64,{b64_video}" type="video/mp4">
-                    #         </video>
-                    #     </div>
-                    #     """, unsafe_allow_html=True)
-
-                # Center the link and add a horizontal line
+                # Display caption, team, entry, and link consistently
+                caption = f"{row['Team']} - Entry: {row['Entry']}"
+                current_col.markdown(f"<div style='text-align: center;'>{caption}</div>", unsafe_allow_html=True)
                 current_col.markdown(f"<center><a href='{row['Link']}'>X Link</a></center>", unsafe_allow_html=True)
                 current_col.markdown("---")
 
                 col_index += 1
     else:
         st.write(f"No data available for {option}")
-

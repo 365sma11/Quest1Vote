@@ -25,7 +25,7 @@ if option:
         # Step 3: Process CSV data and dynamically fill columns
         col_index = 0
         for index, row in data.iterrows():
-            file_path = os.path.join(f'/{option.lower()}', row['File'])
+            file_path = os.path.join(f'./{option.lower()}', row['File'])
             
             if os.path.exists(file_path):
                 current_col = cols[col_index % num_columns]

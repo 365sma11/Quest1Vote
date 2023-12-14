@@ -11,6 +11,7 @@ option = st.sidebar.selectbox('Select Option', ('Community', 'Team'))
 
 # Step 2: Conditional CSV file loading
 if option:
+    st.write("Hover over image/video for expander to click")
     csv_file = f'{option.lower()}.csv'
     
     if os.path.exists(csv_file):

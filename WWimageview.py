@@ -9,6 +9,8 @@ st.title('WW Quest 1- Submissions Viewer')
 
 # Step 1: Update dropdown options
 option = st.sidebar.selectbox('Select Option', ('Community', 'Team'))
+vote="https://pn2nq2l5rqu.typeform.com/to/yYL4jCdC"
+st.sidebar.markdown(f"<center><a href='{vote}'>Go Vote</a></center>", unsafe_allow_html=True)
 
 # Step 2: Conditional CSV file loading
 if option:

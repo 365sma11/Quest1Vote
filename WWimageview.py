@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 from PIL import Image
+import base64
 
 # Initialize Streamlit app
 st.title('WW Quest 1- Submissions Viewer')
@@ -35,7 +36,19 @@ if option:
                     image = Image.open(file_path)
                     current_col.image(image, caption=f"{row['Team']} - Entry: {row['Entry']}", use_column_width=True)
                 elif file_path.endswith('.mp4'):
-                    current_col.video(file_path)
+                    # current_col.video(file_path)
+                    video_file = open(file_path, 'rb')
+                    video_bytes = video_file.read()
+                    b64_video = base64.b64encode(video_bytes).decode()
+
+                    # Embed the video using HTML with appropriate CSS
+                    current_col.markdown(f"""
+                        <div style="padding: 10px; text-align: center;">
+                            <video style="max-width: 100%; height: auto;" controls>
+                                <source src="data:video/mp4;base64,{b64_video}" type="video/mp4">
+                            </video>
+                        </div>
+                        """, unsafe_allow_html=True)
 
                 # Center the link and add a horizontal line
                 current_col.markdown(f"<center><a href='{row['Link']}'>X Link</a></center>", unsafe_allow_html=True)
@@ -44,5 +57,4 @@ if option:
                 col_index += 1
     else:
         st.write(f"No data available for {option}")
-
 

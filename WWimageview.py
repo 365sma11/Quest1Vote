@@ -9,6 +9,10 @@ st.title('Image and Video Display App')
 # Step 1: Update dropdown options
 option = st.sidebar.selectbox('Select Option', ('Community', 'Team'))
 
+# Print current working directory and files in the directory for debugging
+st.write("Current Working Directory:", os.getcwd())
+st.write("Files in the Directory:", os.listdir('.'))
+
 # Step 2: Conditional CSV file loading
 if option:
     csv_file = f'{option.lower()}.csv'

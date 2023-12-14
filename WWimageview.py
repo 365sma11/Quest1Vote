@@ -16,7 +16,7 @@ st.write("Files in the Directory:", os.listdir('.'))
 # Step 2: Conditional CSV file loading
 if option:
     csv_file = f'{option.lower()}.csv'
-    st.write(csv_file)
+    
     if os.path.exists(csv_file):
         data = pd.read_csv(csv_file)
 
@@ -30,7 +30,7 @@ if option:
         col_index = 0
         for index, row in data.iterrows():
             file_path = os.path.join(f'./{option.lower()}', row['File'])
-            st.write(file_path)
+            
             if os.path.exists(file_path):
                 current_col = cols[col_index % num_columns]
                 
